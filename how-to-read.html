@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+
+<html data-lang="en" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>How to Read HCE｜HCEの読み方</title>
+<meta content="Locate where connection has stopped, explain why, and translate diagnosis into the next testable step." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500&amp;family=EB+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Inter:wght@400;500;600&amp;family=Noto+Serif+JP:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#fbfbfa;--bg-alt:#f7f8f8;--ink:#121821;--ink-soft:#313947;--ink-quiet:#747b86;
+  --gold:#c9a15f;--gold-dim:#8f7446;--line:rgba(201,161,95,.30);--line-soft:rgba(18,24,33,.08);
+  --white:rgba(255,255,255,.86);--display:'Cormorant',serif;--body:'EB Garamond',serif;
+  --utility:'Inter',sans-serif;--jp:'Noto Serif JP',serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{
+  background:radial-gradient(ellipse at 50% 18%,rgba(255,255,255,.98),rgba(251,251,250,.82) 45%,rgba(246,247,247,.94) 100%);
+  color:var(--ink);font-family:var(--body);overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:radial-gradient(700px 420px at 50% 18%,rgba(201,161,95,.10),transparent 68%),
+  linear-gradient(rgba(18,24,33,.026) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(18,24,33,.020) 1px,transparent 1px);
+  background-size:auto,72px 72px,72px 72px;
+  mask-image:radial-gradient(circle at 50% 30%,#000,transparent 76%);
+}
+[data-lang="jp"] .lang-en{display:none!important}
+[data-lang="en"] .lang-jp{display:none!important}
+html[data-lang="jp"] h1,html[data-lang="jp"] h2,html[data-lang="jp"] h3,
+html[data-lang="jp"] p,html[data-lang="jp"] a,html[data-lang="jp"] button,
+html[data-lang="jp"] span,html[data-lang="jp"] blockquote{font-family:var(--jp)}
+a{color:inherit;text-decoration:none} button{font:inherit}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:90;display:flex;align-items:center;justify-content:space-between;
+  gap:18px;padding:16px 24px;background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(255,255,255,.78));
+  backdrop-filter:blur(16px);border-bottom:1px solid rgba(18,24,33,.06);
+}
+.brand{white-space:nowrap;font-family:var(--utility);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.brand strong{color:var(--gold-dim);font-weight:600}
+.header-actions{display:flex;align-items:center;gap:14px}
+.lang-toggle{display:flex;align-items:center;gap:8px;font-family:var(--utility);font-size:11px;letter-spacing:.16em;color:var(--ink-quiet)}
+.lang-toggle button{background:none;border:0;cursor:pointer;font-family:var(--utility);font-size:11px;letter-spacing:.16em;color:var(--ink-quiet);padding:4px 2px}
+html[data-lang="en"] .en-btn,html[data-lang="jp"] .jp-btn{color:var(--gold)} .divider{color:var(--gold-dim);opacity:.7}
+.site-menu-toggle{width:42px;height:42px;border:1px solid var(--line-soft);border-radius:50%;background:rgba(255,255,255,.72);display:grid;place-content:center;gap:4px;cursor:pointer}
+.hamburger-line{display:block;width:15px;height:1px;background:var(--ink-soft)}
+.site-menu-backdrop{position:fixed;inset:0;background:rgba(18,24,33,.18);backdrop-filter:blur(3px);z-index:94}
+.site-menu{position:fixed;right:0;top:0;bottom:0;width:min(430px,94vw);padding:22px 24px 30px;background:rgba(251,251,250,.97);backdrop-filter:blur(20px);z-index:95;transform:translateX(102%);transition:.36s ease;box-shadow:-30px 0 70px rgba(18,24,33,.10);overflow:auto}
+.site-menu.open{transform:none}
+.site-menu-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid var(--line-soft)}
+.site-menu-title{display:flex;gap:10px;align-items:baseline;font-family:var(--utility);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-quiet)}
+.site-menu-title strong{color:var(--gold-dim)} .site-menu-close{border:0;background:none;font-size:28px;color:var(--ink-soft);cursor:pointer}
+.site-menu-links{display:flex;flex-direction:column;padding-top:12px}
+.site-menu-links a{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:16px 8px;border-bottom:1px solid var(--line-soft);transition:.2s ease}
+.site-menu-links a:hover{padding-left:14px;background:rgba(255,255,255,.66)} .site-menu-links a.current{color:var(--gold-dim)}
+.menu-index{font-family:var(--utility);font-size:9px;letter-spacing:.12em;color:var(--gold-dim);padding-top:4px}
+.site-menu-links b{display:block;font-family:var(--display);font-size:24px;font-weight:400;line-height:1.05}
+.site-menu-links small{display:block;margin-top:6px;font-family:var(--body);font-size:15px;line-height:1.4;color:#5f6670}
+
+.top-link{position:fixed;right:22px;bottom:22px;z-index:88;border:1px solid var(--line);background:rgba(255,255,255,.88);backdrop-filter:blur(10px);color:var(--ink-soft);font-family:var(--utility);font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:12px 14px;border-radius:999px;box-shadow:0 14px 36px rgba(18,24,33,.09);cursor:pointer}
+
+#hero{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:flex-start;padding:96px 6vw 56px;overflow:hidden}
+#hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 46%,rgba(255,255,255,.82),rgba(251,251,250,0) 64%);pointer-events:none}
+.ring-wrap{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background-image:
+    linear-gradient(90deg,rgba(251,251,250,.72) 0%,rgba(251,251,250,.48) 24%,rgba(251,251,250,.12) 46%,rgba(251,251,250,0) 100%),
+    linear-gradient(180deg,rgba(255,255,255,.10),rgba(251,251,250,.38)),
+    url("background03.png");
+  background-size:cover;
+  background-position:center top;
+  background-repeat:no-repeat;
+  filter:grayscale(.32) saturate(.56) brightness(1.02) contrast(.96);
+  opacity:.96;
+}
+.ring-wrap::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 18% 50%,rgba(255,255,255,.58) 0%,rgba(255,255,255,.34) 34%,rgba(255,255,255,.10) 58%,rgba(255,255,255,0) 82%),
+    linear-gradient(180deg,rgba(255,255,255,.00),rgba(251,251,250,.08) 74%,rgba(251,251,250,.26));
+}
+.hero-inner{position:relative;max-width:700px;text-align:left;z-index:2;padding:8px 0 8px 0;background:transparent;border:0;border-radius:0;backdrop-filter:none;box-shadow:none}
+.hero-inner::before{content:'';position:absolute;left:-8%;top:50%;width:112%;height:126%;transform:translateY(-50%);background:radial-gradient(ellipse at 28% 50%,rgba(255,255,255,.52) 0%,rgba(255,255,255,.30) 36%,rgba(255,255,255,.08) 62%,transparent 84%);filter:blur(8px);z-index:-1;pointer-events:none}
+.eyebrow{font-family:var(--utility)!important;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-dim);margin:0 0 20px;font-weight:600}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(34px,4.2vw,56px);line-height:1.05;letter-spacing:.005em;margin:0 0 18px;color:#10151d;text-shadow:0 1px 0 rgba(255,255,255,.78)}
+.hero-core{font-family:var(--body)!important;font-size:clamp(17px,1.35vw,22px);line-height:1.62;color:#171d26;max-width:630px;margin:0 0 14px;text-shadow:0 1px 0 rgba(255,255,255,.52)}
+.hero-description{font-family:var(--body)!important;font-size:clamp(14.5px,1.05vw,17px);line-height:1.82;color:#2f3742;max-width:620px;margin:0;text-shadow:0 1px 0 rgba(255,255,255,.50)}
+.hero-meta{display:flex;justify-content:flex-start;flex-wrap:wrap;gap:8px 16px;margin-top:20px;font-family:var(--utility);font-size:10px;letter-spacing:.10em;text-transform:uppercase;color:#7a6a52}
+.scroll-cue{position:absolute;bottom:35px;left:50%;transform:translateX(-50%);font-family:var(--utility);font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-dim);display:flex;flex-direction:column;align-items:center;gap:9px;z-index:3}
+.scroll-cue .stem{width:1px;height:32px;background:linear-gradient(var(--gold-dim),transparent)}
+
+.page-shell{display:grid;grid-template-columns:220px minmax(0,820px);gap:7vw;width:min(1240px,100%);margin:0 auto;padding:110px 5vw 130px}
+.toc{position:sticky;top:100px;align-self:start;padding:22px 20px;border:1px solid var(--line-soft);border-radius:24px;background:rgba(255,255,255,.54);backdrop-filter:blur(12px);box-shadow:0 20px 55px rgba(18,24,33,.05)}
+.toc-label{font-family:var(--utility)!important;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.toc a{display:block;padding:10px 0;border-bottom:1px solid var(--line-soft);font-family:var(--body);font-size:14px;line-height:1.35;color:#59616c;transition:.2s}
+.toc a:last-child{border-bottom:0} .toc a:hover{color:var(--gold-dim);padding-left:5px}
+.content{min-width:0;opacity:1!important;transform:none!important}
+.content>.lang-en>p:first-child,.content>.lang-jp>p:first-child{font-size:clamp(20px,2.2vw,29px);line-height:1.55;color:var(--ink);margin-bottom:32px}
+.content p{font-family:var(--body);font-size:clamp(15.2px,1.02vw,17px);line-height:1.88;color:#2f3742;margin:0 0 18px}
+html[data-lang="jp"] .content p{line-height:2.05;letter-spacing:.012em}
+.content blockquote{font-family:var(--display);font-size:clamp(25px,3vw,39px);font-weight:400;line-height:1.42;color:var(--ink);margin:52px 0;padding:42px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+.chapter-section{padding:100px 0 20px;margin-top:85px;border-top:1px solid var(--line-soft)}
+.section-number{font-family:var(--utility);font-size:11px;letter-spacing:.18em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:12px}
+.chapter-section h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,2.5vw,34px);line-height:1.18;margin:0 0 24px;color:var(--ink)}
+.example-title{font-family:var(--display);font-size:clamp(24px,2.5vw,32px);font-weight:400;line-height:1.28;margin:62px 0 24px;padding-top:24px;border-top:1px solid var(--line-soft)}
+.signal-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:30px 0 38px}
+.signal-list span{display:flex;align-items:center;min-height:76px;padding:18px 20px;border:1px solid var(--line-soft);border-radius:20px;background:rgba(255,255,255,.60);font-family:var(--display);font-size:21px;color:var(--ink);box-shadow:0 14px 38px rgba(18,24,33,.045)}
+.diagnostic-chain{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin:38px 0 46px;padding:30px;border:1px solid var(--line-soft);border-radius:28px;background:rgba(255,255,255,.55)}
+.diagnostic-chain span{position:relative;padding:9px 14px;border:1px solid var(--line);border-radius:999px;font-family:var(--utility);font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-soft);background:#fff}
+.step{display:grid;grid-template-columns:82px 1fr;gap:22px;padding:20px 0;border-top:1px solid var(--line-soft)}
+.step>span{font-family:var(--utility)!important;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dim);padding-top:5px}
+.step p{margin:0}
+.next-page{display:flex;justify-content:space-between;align-items:end;gap:30px;padding:90px 9vw;background:linear-gradient(135deg,#f5f3ee,#fff);border-top:1px solid var(--line)}
+.next-page span{font-family:var(--utility);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dim)}
+.next-page strong{display:block;font-family:var(--display);font-weight:400;font-size:clamp(38px,6vw,74px);line-height:1;margin-top:9px}
+.site-footer{padding:22px 18px 34px;text-align:center;color:var(--ink-quiet);font-family:var(--utility);font-size:10px;letter-spacing:.08em;background:#fff;border-top:1px solid rgba(18,24,33,.06)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity 1.1s ease,transform 1.1s ease} .reveal.visible{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){.reveal{transition:none}}
+@media(max-width:900px){.page-shell{display:block;padding:80px 7vw 100px}.toc{position:relative;top:auto;margin-bottom:70px}.signal-list{grid-template-columns:1fr}}
+@media(max-width:620px){.topbar{padding:14px 16px}.brand span{display:none}#hero{padding:108px 6vw 72px;align-items:flex-end}.hero-inner{padding:0;background:transparent}.ring-wrap{inset:0;background-position:70% top;opacity:.66}.ring-wrap::after{background:linear-gradient(90deg,rgba(251,251,250,.92),rgba(251,251,250,.54) 56%,rgba(251,251,250,.06)),linear-gradient(180deg,rgba(251,251,250,.04),rgba(251,251,250,.50) 84%)}.step{grid-template-columns:58px 1fr}.site-menu-links b{font-size:21px}.next-page{padding:65px 7vw}.top-link{right:14px;bottom:14px}}
+
+.chapter-overview{padding:0 6vw 70px}
+.overview-shell{max-width:1240px;margin:0 auto;padding:0 0 10px}
+.overview-intro{display:flex;justify-content:space-between;align-items:end;gap:24px;padding:0 6px 18px;border-bottom:1px solid var(--line-soft)}
+.overview-kicker{font-family:var(--utility)!important;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dim);margin:0 0 10px}
+.overview-title{font-family:var(--display);font-weight:400;font-size:clamp(24px,2.2vw,32px);line-height:1.18;margin:0;color:var(--ink)}
+.overview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:26px}
+.overview-card{position:relative;padding:30px 28px 28px;border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.60));border:1px solid rgba(201,161,95,.20);box-shadow:0 24px 56px rgba(18,24,33,.05);min-height:205px}
+.overview-card::before{content:"";position:absolute;left:24px;top:24px;width:42px;height:1px;background:rgba(201,161,95,.46)}
+.overview-index{display:block;font-family:var(--utility);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dim);margin:0 0 34px}
+.overview-card h3{font-family:var(--display);font-weight:400;font-size:24px;line-height:1.12;margin:0 0 10px;color:var(--ink)}
+.overview-card p{font-size:14.5px;line-height:1.72;margin:0;color:#3a414c}
+.page-shell{grid-template-columns:215px minmax(0,900px);gap:5vw;padding-top:72px}
+.toc{top:88px}
+.content > .lang-en > p:first-child,.content > .lang-jp > p:first-child{font-size:clamp(19px,1.55vw,24px);line-height:1.55;color:var(--ink);margin-bottom:24px;max-width:32em}
+.lens-rail{display:flex;justify-content:flex-end;margin:28px 0 48px}
+.lens-card{padding:20px 22px 18px;min-width:280px;max-width:340px;border-left:1px solid var(--gold);background:linear-gradient(90deg,rgba(255,255,255,.56),rgba(255,255,255,.22));backdrop-filter:blur(4px)}
+.lens-kicker{display:block;font-family:var(--utility)!important;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:8px}
+.lens-card p{font-size:18px;line-height:1.62;margin:0;color:#24303c}
+.chapter-section{position:relative;padding:46px 42px 34px;margin-top:68px;border:1px solid rgba(18,24,33,.07);border-radius:32px;background:linear-gradient(180deg,rgba(255,255,255,.78),rgba(255,255,255,.52));box-shadow:0 26px 68px rgba(18,24,33,.045)}
+.chapter-section:nth-of-type(even){background:linear-gradient(180deg,rgba(249,247,242,.88),rgba(255,255,255,.60))}
+.chapter-section::after{content:"";position:absolute;right:24px;top:24px;width:90px;height:90px;border-top:1px solid rgba(201,161,95,.24);border-right:1px solid rgba(201,161,95,.24);border-radius:0 26px 0 0;opacity:.8}
+.chapter-section h2{max-width:14ch}
+.signal-list{gap:14px 16px}
+.signal-list span{position:relative;padding:20px 22px 20px 54px;border-radius:22px;background:rgba(255,255,255,.68)}
+.signal-list span::before{content:"";position:absolute;left:22px;top:50%;width:16px;height:16px;transform:translateY(-50%);border:1px solid rgba(201,161,95,.42);border-radius:50%;box-shadow:inset 0 0 0 4px rgba(201,161,95,.12)}
+.diagnostic-chain{justify-content:flex-start;padding:26px 24px;border-radius:24px}
+.diagnostic-chain span{font-size:10px;letter-spacing:.14em;background:rgba(255,255,255,.92)}
+.step{align-items:start;padding:18px 0}
+.step>span{display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;border:1px solid rgba(201,161,95,.22);background:rgba(255,255,255,.72);font-size:10px;letter-spacing:.11em;padding-top:0}
+.step p{padding-top:10px}
+.example-card{position:relative;margin:34px 0 18px;padding:10px 0 6px}
+.example-card::before{content:"";position:absolute;left:-24px;top:12px;bottom:12px;width:1px;background:linear-gradient(rgba(201,161,95,.34),rgba(201,161,95,.02))}
+.example-title{font-size:clamp(28px,3vw,38px);margin:0 0 18px;padding-top:0;border-top:0}
+.example-card .step{padding-left:12px}
+.next-page{padding:88px 8vw;background:linear-gradient(135deg,rgba(245,243,238,.82),rgba(255,255,255,.92))}
+@media(max-width:980px){
+  .overview-grid{grid-template-columns:1fr}
+  .overview-intro{display:block}
+  .page-shell{display:block;padding-top:30px}
+  .toc{position:relative;top:auto;margin-bottom:28px}
+  .chapter-section{padding:24px 18px 18px}
+}
+@media(max-width:620px){
+  .chapter-overview{padding:0 6vw 40px}
+  .overview-card{padding:18px 16px 16px;min-height:auto}
+  .overview-card h3{font-size:22px}
+  .lens-rail{justify-content:flex-start}
+  .lens-card{max-width:none;width:100%}
+  .chapter-section::after{display:none}
+  .step{grid-template-columns:52px 1fr}
+  .signal-list span{font-size:15px}
+}
+
+.overview-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
+.overview-card{position:relative;padding:22px 20px 20px;border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,.66),rgba(255,255,255,.42));border:1px solid rgba(201,161,95,.16);box-shadow:0 18px 38px rgba(18,24,33,.035);min-height:172px}
+.overview-card::before{content:"";position:absolute;left:20px;top:18px;width:34px;height:1px;background:rgba(201,161,95,.46)}
+.overview-index{display:block;font-family:var(--utility);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dim);margin:0 0 24px}
+.page-shell{grid-template-columns:200px minmax(0,840px);gap:4vw;padding-top:44px}
+.chapter-section{position:relative;padding:30px 28px 20px;margin-top:42px;border:1px solid rgba(18,24,33,.06);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.58),rgba(255,255,255,.34));box-shadow:0 18px 40px rgba(18,24,33,.03)}
+.chapter-section:nth-of-type(even){background:linear-gradient(180deg,rgba(249,247,242,.68),rgba(255,255,255,.40))}
+.chapter-section::after{content:"";position:absolute;right:18px;top:18px;width:64px;height:64px;border-top:1px solid rgba(201,161,95,.18);border-right:1px solid rgba(201,161,95,.18);border-radius:0 18px 0 0;opacity:.8}
+.signal-list{gap:10px 12px;margin:22px 0 30px}
+.signal-list span{position:relative;padding:14px 16px 14px 42px;border-radius:16px;background:rgba(255,255,255,.54);font-size:17px;min-height:60px}
+.signal-list span::before{left:16px;width:12px;height:12px;box-shadow:inset 0 0 0 3px rgba(201,161,95,.14)}
+.diagnostic-chain{justify-content:flex-start;padding:18px 18px;border-radius:18px;background:rgba(255,255,255,.46);margin:24px 0 30px}
+.diagnostic-chain span{font-size:9px;letter-spacing:.12em;padding:8px 11px}
+.step{align-items:start;padding:12px 0;gap:16px;grid-template-columns:64px 1fr}
+.step>span{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(201,161,95,.18);background:rgba(255,255,255,.60);font-size:8.5px;letter-spacing:.08em;padding-top:0}
+.step p{padding-top:6px}
+.example-card{position:relative;margin:24px 0 14px;padding:6px 0 4px}
+.example-card::before{content:"";position:absolute;left:-18px;top:10px;bottom:10px;width:1px;background:linear-gradient(rgba(201,161,95,.28),rgba(201,161,95,.02))}
+.lens-rail{display:flex;justify-content:flex-end;margin:20px 0 30px}
+.lens-card{padding:16px 18px 14px;min-width:240px;max-width:300px;border-left:1px solid var(--gold);background:linear-gradient(90deg,rgba(255,255,255,.42),rgba(255,255,255,.16));backdrop-filter:blur(3px)}
+.lens-card p{font-size:15px;line-height:1.6;margin:0;color:#24303c}
+.next-page{padding:64px 8vw;background:linear-gradient(135deg,rgba(245,243,238,.66),rgba(255,255,255,.84))}
+.next-page strong{font-size:clamp(28px,4.4vw,52px)}
+.toc{padding:16px 16px;border-radius:18px;background:rgba(255,255,255,.42);box-shadow:0 16px 36px rgba(18,24,33,.03)}
+.toc-label{font-size:8.5px;margin-bottom:12px}
+
+.hero-diagram{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px;margin-bottom:14px}
+.diagram-node{display:inline-flex;align-items:center;justify-content:center;padding:7px 12px;border-radius:999px;border:1px solid rgba(201,161,95,.18);background:rgba(255,255,255,.42);backdrop-filter:blur(2px);font-family:var(--utility);font-size:9px;letter-spacing:.10em;text-transform:uppercase;color:#5d5345}
+.diagram-link{width:22px;height:1px;background:linear-gradient(90deg,rgba(201,161,95,.6),rgba(201,161,95,.18))}
+@media(max-width:620px){.hero-diagram{gap:6px}.diagram-node{padding:6px 10px;font-size:8px}.diagram-link{width:14px}}
+
+/* Navigation target offsets and TOC */
+.chapter-section{scroll-margin-top:96px}
+.toc a.active{color:var(--gold-dim);padding-left:6px}
+html{scroll-padding-top:92px}
+
+/* Hero: show more background, calm type */
+#hero{min-height:88vh;padding:92px 6vw 42px}
+.ring-wrap{filter:grayscale(.28) saturate(.58) brightness(1.0) contrast(.98)!important;opacity:.98!important}
+.ring-wrap::after{
+  background:
+    radial-gradient(ellipse at 17% 50%,rgba(255,255,255,.42) 0%,rgba(255,255,255,.18) 36%,rgba(255,255,255,.04) 58%,rgba(255,255,255,0) 80%),
+    linear-gradient(180deg,rgba(255,255,255,0),rgba(251,251,250,.14) 82%,rgba(251,251,250,.22))!important;
+}
+.hero-inner{max-width:620px;padding-top:0;padding-bottom:0}
+.hero-inner::before{
+  left:-10%;width:104%;height:120%;
+  background:radial-gradient(ellipse at 25% 50%,rgba(255,255,255,.38) 0%,rgba(255,255,255,.16) 38%,rgba(255,255,255,.03) 64%,transparent 84%)!important
+}
+.eyebrow{font-size:10px;letter-spacing:.16em;margin-bottom:14px}
+h1{font-size:clamp(32px,3.8vw,48px)!important;line-height:1.06!important;margin:0 0 14px!important}
+.hero-core{font-size:clamp(16px,1.1vw,19px)!important;line-height:1.66!important;margin-bottom:12px!important}
+.hero-description{font-size:clamp(13.5px,.92vw,15.5px)!important;line-height:1.86!important}
+.hero-diagram{margin-top:14px;margin-bottom:10px}
+.hero-meta{margin-top:14px!important;font-size:9.5px!important;gap:7px 14px!important}
+.diagram-node{padding:6px 10px;font-size:8.5px}
+.diagram-link{width:16px}
+
+/* Overview / framework design */
+.chapter-overview{padding:0 6vw 48px}
+.overview-grid{gap:12px;margin-top:18px}
+.overview-card{padding:18px 18px 16px;min-height:154px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.58),rgba(255,255,255,.30));box-shadow:0 14px 28px rgba(18,24,33,.028)}
+.overview-card h3{font-size:22px}
+.overview-card p{font-size:14px;line-height:1.74}
+.overview-title{font-size:clamp(22px,2vw,28px)!important}
+
+.page-shell{grid-template-columns:190px minmax(0,840px)!important;gap:3.5vw!important;padding-top:28px!important}
+.toc{padding:14px 14px!important;border-radius:16px!important;background:rgba(255,255,255,.36)!important}
+.toc a{font-size:13.5px!important;line-height:1.32!important}
+.content > .lang-en > p:first-child,.content > .lang-jp > p:first-child{font-size:clamp(18px,1.35vw,21px)!important;line-height:1.58!important}
+.content p{font-size:clamp(14.5px,.92vw,16.2px)!important;line-height:1.86!important}
+
+/* Section frames */
+.chapter-section{padding:24px 22px 16px!important;margin-top:34px!important;border-radius:18px!important;background:linear-gradient(180deg,rgba(255,255,255,.48),rgba(255,255,255,.24))!important;box-shadow:0 12px 26px rgba(18,24,33,.024)!important}
+.chapter-section:nth-of-type(even){background:linear-gradient(180deg,rgba(249,247,242,.56),rgba(255,255,255,.28))!important}
+.chapter-section::after{width:52px!important;height:52px!important;right:14px!important;top:14px!important}
+.section-number{font-size:10px!important;margin-bottom:8px!important}
+.chapter-section h2{font-size:clamp(24px,2vw,30px)!important;line-height:1.18!important;margin-bottom:18px!important;max-width:100%!important}
+
+/* 0.1 signal list */
+.signal-list{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;margin:20px 0 24px!important}
+.signal-list span{min-height:54px!important;padding:12px 14px 12px 38px!important;border-radius:14px!important;font-size:15px!important;background:rgba(255,255,255,.48)!important}
+.signal-list span::before{left:14px!important;width:10px!important;height:10px!important}
+
+/* 0.2 chain */
+.diagnostic-chain{padding:16px 16px!important;border-radius:16px!important;margin:18px 0 22px!important;background:rgba(255,255,255,.40)!important}
+.diagnostic-chain span{font-size:8.6px!important;padding:7px 9px!important}
+
+/* 0.3 framework cards */
+.framework-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 18px}
+.framework-card{position:relative;padding:16px 16px 14px;border-radius:16px;border:1px solid rgba(201,161,95,.16);background:linear-gradient(180deg,rgba(255,255,255,.60),rgba(255,255,255,.32));box-shadow:0 12px 24px rgba(18,24,33,.026);min-height:190px}
+.framework-icon{display:flex;align-items:center;gap:4px;margin-bottom:12px;opacity:.78}
+.framework-dot{width:10px;height:10px;border-radius:50%;border:1px solid rgba(201,161,95,.42);background:rgba(201,161,95,.16)}
+.framework-line{display:block;width:16px;height:1px;background:rgba(201,161,95,.46)}
+.framework-badge{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;border:1px solid rgba(201,161,95,.18);font-family:var(--utility);font-size:9px;letter-spacing:.12em;color:var(--gold-dim);background:rgba(255,255,255,.68);margin-bottom:10px}
+.framework-copy p{margin:0!important;font-size:14.5px!important;line-height:1.72!important;color:#2f3742}
+
+/* Lens */
+.lens-rail{margin:18px 0 24px!important}
+.lens-card{min-width:220px;max-width:280px;padding:14px 16px 12px;background:linear-gradient(90deg,rgba(255,255,255,.32),rgba(255,255,255,.12))}
+.lens-card p{font-size:14px!important}
+
+/* Steps */
+.step{grid-template-columns:54px 1fr!important;padding:10px 0!important;gap:12px!important}
+.step>span{width:38px!important;height:38px!important;font-size:8px!important}
+.step p{padding-top:4px!important}
+
+/* Examples accordion */
+.example-accordion{margin:10px 0 14px;border:1px solid rgba(18,24,33,.06);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.56),rgba(255,255,255,.28));box-shadow:0 12px 28px rgba(18,24,33,.024);overflow:hidden}
+.example-accordion[open]{background:linear-gradient(180deg,rgba(255,255,255,.64),rgba(255,255,255,.34))}
+.example-summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:18px 20px;cursor:pointer}
+.example-summary::-webkit-details-marker{display:none}
+.example-summary-text{display:flex;flex-direction:column;gap:4px}
+.example-summary-title{font-family:var(--display);font-size:24px;line-height:1.18;color:var(--ink)}
+.example-summary-meta{font-family:var(--utility);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dim)}
+.example-chevron{font-size:20px;line-height:1;color:var(--gold-dim);transition:transform .2s ease}
+.example-accordion[open] .example-chevron{transform:rotate(45deg)}
+.example-accordion-body{padding:0 20px 18px}
+.example-step-grid{display:grid;grid-template-columns:1fr;gap:0}
+.example-card,.example-title{all:unset} /* neutralize old wrappers if any */
+
+/* Mobile */
+@media(max-width:980px){
+  .page-shell{display:block!important}
+  .toc{position:relative!important;top:auto!important;margin-bottom:22px!important}
+  .framework-grid{grid-template-columns:1fr 1fr}
+  .signal-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:620px){
+  #hero{min-height:84vh;padding:88px 6vw 34px}
+  .ring-wrap{background-position:72% top!important;opacity:.98!important}
+  h1{font-size:clamp(28px,8vw,40px)!important}
+  .overview-grid,.framework-grid{grid-template-columns:1fr!important}
+  .signal-list{grid-template-columns:1fr!important}
+  .example-summary{padding:16px 16px}
+  .example-summary-title{font-size:20px}
+  .example-accordion-body{padding:0 16px 16px}
+}
+
+/* 0.3 framework: same visual grammar as the applied examples */
+.framework-step-list{
+  margin:14px 0 18px;
+  border:1px solid rgba(18,24,33,.06);
+  border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.58),rgba(255,255,255,.28));
+  box-shadow:0 12px 28px rgba(18,24,33,.024);
+  overflow:hidden;
+}
+.framework-step-list .framework-step{
+  padding:12px 16px!important;
+  margin:0;
+}
+.framework-step-list .framework-step:first-child{border-top:0}
+.framework-step-list .framework-step:last-child{padding-bottom:14px!important}
+.framework-step-list .framework-step>span{
+  width:40px!important;height:40px!important;
+  flex:0 0 40px;
+}
+.framework-step-list .framework-step p{
+  margin:0!important;
+  padding-top:4px!important;
+}
+
+/* Example accordions: force identical rendering for Example 1, 2, and 3 */
+.example-accordion{
+  display:block;
+}
+.example-accordion .example-step-grid{
+  display:block;
+}
+.example-accordion .step{
+  display:grid!important;
+  grid-template-columns:54px 1fr!important;
+  gap:12px!important;
+  padding:10px 0!important;
+  border-top:1px solid var(--line-soft)!important;
+}
+.example-accordion .step:first-child{border-top:0!important}
+.example-accordion .step>span{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:38px!important;
+  height:38px!important;
+  border-radius:50%!important;
+  border:1px solid rgba(201,161,95,.18)!important;
+  background:rgba(255,255,255,.60)!important;
+  font-family:var(--utility)!important;
+  font-size:8px!important;
+  letter-spacing:.08em!important;
+  color:var(--gold-dim)!important;
+}
+.example-accordion .step p{
+  margin:0!important;
+  padding-top:4px!important;
+  font-size:clamp(14.5px,.92vw,16.2px)!important;
+  line-height:1.78!important;
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+<a aria-label="HCE home" class="brand" href="index.html"><strong>HCE</strong><span>｜HUMAN CONNECTION ECOSYSTEM</span></a>
+<div class="header-actions">
+<div aria-label="Language selection" class="lang-toggle">
+<button class="en-btn" onclick="setLang('en')">EN</button><span class="divider">/</span><button class="jp-btn" onclick="setLang('jp')">JP</button>
+</div>
+<button aria-label="Open site navigation" class="site-menu-toggle" id="menuToggle"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+</div>
+</header>
+<div class="site-menu-backdrop" hidden="" id="siteMenuBackdrop"></div>
+<aside aria-hidden="true" class="site-menu" id="siteMenu">
+<div class="site-menu-head"><div class="site-menu-title"><strong>HCE</strong><span class="lang-en">Site Navigation</span><span class="lang-jp">サイトナビゲーション</span></div><button class="site-menu-close" id="siteMenuClose">×</button></div>
+<nav class="site-menu-links">
+<a href="index.html"><span class="menu-index">01</span><span><b class="lang-en">Theory</b><b class="lang-jp">理論</b><small class="lang-en">The HCE core structure</small><small class="lang-jp">HCEの理論骨格</small></span></a>
+<a class="current" href="how-to-read.html"><span class="menu-index">02</span><span><b class="lang-en">How to Read</b><b class="lang-jp">読み方</b><small class="lang-en">From diagnosis to the next step</small><small class="lang-jp">診断から次の一手へ</small></span></a>
+<a href="introduction.html"><span class="menu-index">03</span><span><b class="lang-en">Introduction</b><b class="lang-jp">導入</b><small class="lang-en">Why this inquiry began</small><small class="lang-jp">この探究が始まった理由</small></span></a>
+<a href="motivation.html"><span class="menu-index">04</span><span><b class="lang-en">Author's Motivation</b><b class="lang-jp">執筆の動機</b><small class="lang-en">The personal and intellectual origin</small><small class="lang-jp">個人的・知的な出発点</small></span></a>
+<a href="research.html"><span class="menu-index">05</span><span><b class="lang-en">Research &amp; Evidence</b><b class="lang-jp">研究・学術根拠</b><small class="lang-en">Evidence behind the theory</small><small class="lang-jp">理論を支える根拠</small></span></a>
+<a href="book.html"><span class="menu-index">06</span><span><b class="lang-en">Book</b><b class="lang-jp">書籍</b><small class="lang-en">Structure, chapters, and progress</small><small class="lang-jp">構成・章・執筆状況</small></span></a>
+<a href="applications.html"><span class="menu-index">07</span><span><b class="lang-en">Applications</b><b class="lang-jp">応用</b><small class="lang-en">Audits, tools, and projects</small><small class="lang-jp">診断・ツール・プロジェクト</small></span></a>
+<a href="about.html"><span class="menu-index">08</span><span><b class="lang-en">About</b><b class="lang-jp">著者・プロジェクト</b><small class="lang-en">Author and project information</small><small class="lang-jp">著者とプロジェクト情報</small></span></a>
+</nav>
+</aside>
+<button class="top-link" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span class="lang-en">Top</span><span class="lang-jp">Topへ</span></button>
+<section id="hero">
+<div class="ring-wrap" id="heroRing"></div>
+<div class="hero-inner reveal">
+<p class="eyebrow lang-en">Operating Guide · Chapter Zero</p><p class="eyebrow lang-jp">実践ガイド・第0章</p>
+<h1 class="lang-en">How to Read HCE</h1><h1 class="lang-jp">HCEの読み方</h1>
+<p class="hero-core lang-en">Locate where connection has stopped—and what is preventing it from moving forward.</p>
+<p class="hero-core lang-jp">繋がりのどこで、何が止まっているのかを見極める。</p>
+<p class="hero-description lang-en">A practical guide for translating an observed problem into a phenomenon, phase, stage, driver, quality factor, mechanism, method, and next testable step.</p>
+<p class="hero-description lang-jp">目の前の問題を、現象、フェーズ、ステージ、ドライバー、クオリティファクター、メカニズム、メソッド、そして検証可能な次の一手へ変換するための実践ガイド。</p>
+<div class="hero-diagram">
+<span class="diagram-node">Problem</span>
+<span class="diagram-link"></span>
+<span class="diagram-node">Phase</span>
+<span class="diagram-link"></span>
+<span class="diagram-node">Driver</span>
+<span class="diagram-link"></span>
+<span class="diagram-node">Next Step</span>
+</div>
+<div class="hero-meta"><span>Problem → Next Step</span><span>9 Diagnostic Layers</span><span>3 Applied Cases</span></div>
+</div>
+<div class="scroll-cue"><span class="stem"></span><span class="lang-en">Scroll</span><span class="lang-jp">スクロール</span></div>
+</section>
+<section class="chapter-overview reveal visible">
+<div class="overview-shell">
+<div class="overview-intro">
+<p class="overview-kicker lang-en">Quick Orientation</p>
+<p class="overview-kicker lang-jp">クイックガイド</p>
+<h2 class="overview-title lang-en">A page designed to be scanned, not only read.</h2>
+<h2 class="overview-title lang-jp">読むだけでなく、眺めながら構造を掴めるページへ。</h2>
+</div>
+<div class="overview-grid">
+<article class="overview-card">
+<span class="overview-index">01</span>
+<h3 class="lang-en">Three Questions</h3>
+<h3 class="lang-jp">三つの問い</h3>
+<p class="lang-en">Where has connection stopped? Why there? What can be tested next?</p>
+<p class="lang-jp">今どこで止まっているのか。なぜそこで止まっているのか。次に何を検証できるのか。</p>
+</article>
+<article class="overview-card">
+<span class="overview-index">02</span>
+<h3 class="lang-en">Nine Steps</h3>
+<h3 class="lang-jp">九つのステップ</h3>
+<p class="lang-en">Problem → Phenomenon → Phase → Stage → Driver → Quality Factor → Mechanism → Method → Next Step</p>
+<p class="lang-jp">問題 → 現象 → フェーズ → ステージ → ドライバー → クオリティファクター → メカニズム → メソッド → 次の一手</p>
+</article>
+<article class="overview-card">
+<span class="overview-index">03</span>
+<h3 class="lang-en">Applied Cases</h3>
+<h3 class="lang-jp">三つの実例</h3>
+<p class="lang-en">Service adoption, employee retention, and community development.</p>
+<p class="lang-jp">サービス浸透、人材定着、コミュニティ成長という三つの事例。</p>
+</article>
+</div>
+</div>
+</section>
+<div class="page-shell">
+<aside class="toc reveal">
+<div class="toc-label lang-en">On This Page</div><div class="toc-label lang-jp">このページ</div>
+<a data-en-href="#en-section-1" data-jp-href="#jp-section-1" href="#en-section-1"><span class="lang-en">0.1 What HCE Examines</span><span class="lang-jp">0.1 HCEが扱うもの</span></a>
+<a data-en-href="#en-section-2" data-jp-href="#jp-section-2" href="#en-section-2"><span class="lang-en">0.2 Problem to Next Step</span><span class="lang-jp">0.2 問題から次の一手まで</span></a>
+<a data-en-href="#en-section-3" data-jp-href="#jp-section-3" href="#en-section-3"><span class="lang-en">0.3 Nine Steps</span><span class="lang-jp">0.3 九つのステップ</span></a>
+<a data-en-href="#en-section-4" data-jp-href="#jp-section-4" href="#en-section-4"><span class="lang-en">0.4 Three Examples</span><span class="lang-jp">0.4 三つの実例</span></a>
+<a data-en-href="#en-section-5" data-jp-href="#jp-section-5" href="#en-section-5"><span class="lang-en">0.5 Private Relationships</span><span class="lang-jp">0.5 私的領域への応用</span></a>
+<a data-en-href="#en-section-6" data-jp-href="#jp-section-6" href="#en-section-6"><span class="lang-en">0.6 Using This Book</span><span class="lang-jp">0.6 この本の読み方</span></a>
+</aside>
+<main class="content">
+<div class="lang-en"><p>A business fails to grow. Talented people do not stay. Customers use a product once but never return. A community attracts participants but fails to generate deeper engagement. A brand may be widely recognized yet never progress toward trust or advocacy. On the surface, these appear to be separate challenges involving marketing, organizations, talent, products, or culture-building. Yet many of them can be reduced to one common question:</p>
+<blockquote>“How do people and groups come to know something, engage with it, remain connected to it, accept it as part of themselves, and pass it forward?”</blockquote>
+<p>People often appear to leave suddenly. Yet disconnection rarely begins on the day of departure. Recognition gradually declines. A sense of safety is lost. The reasons for remaining involved begin to weaken. Something that once formed part of the self is slowly pushed back outside its boundaries.</p>
+<p>HCE is a theory for reading the progression and stagnation of connection behind these otherwise invisible changes. Its objects of analysis include companies, brands, products, organizations, communities, cultures, institutions, and interpersonal relationships. Although each domain uses different language, the processes through which connection emerges, weakens, deepens, breaks, and is reconstructed share a common structure.</p>
+<p>The purpose of this book is not to make readers memorize a theory. It is to translate complex problems into observable structures and clarify where progression has stopped, what is missing, and which interventions may be considered.</p>
+<div class="lens-rail">
+<div class="lens-card">
+<span class="lens-kicker">Reading Lens</span>
+<p>This chapter turns problems into structure.</p>
+</div>
+</div>
+<section class="chapter-section" id="en-section-1"><div class="section-number">0.1</div><h2>What HCE Examines</h2>
+<p>In business and organizational settings, outcomes are usually the first things we see.</p>
+<div class="signal-list"><span>It does not sell.</span><span>It does not continue.</span><span>People leave.</span><span>People do not participate.</span><span>It is not trusted.</span><span>It is not recommended.</span><span>It is not passed on.</span></div>
+<p>Yet outcomes alone do not reveal their causes.</p>
+<p>The same problem—“it does not sell”—requires different responses depending on whether people are unaware of its existence, it has failed to attract attention, its value is not understood, or progression has stopped during trust formation.</p>
+<p>The same outcome—“an employee left”—also points to different structures requiring correction depending on whether the underlying cause was a lack of recognition, a loss of agency, reduced safety, the disappearance of a sense of contribution, or the exhaustion of future expectations.</p>
+<p>HCE decomposes the final observable outcome into the connection structures that preceded it.</p>
+<p>To do so, HCE addresses three questions in sequence:</p>
+<div class="signal-list"><span>Where has progression stopped?</span><span>Why has it stopped there?</span><span>What can be considered next?</span></div>
+<p>A critical point is that HCE is not a decision-making device that prescribes a single correct answer. It is a navigation system for organizing an object of observation, comparing multiple possibilities, and making intervention options and their risks visible. Final decisions remain with the people involved, who must evaluate them in light of their purpose, context, ethics, and constraints.</p>
+</section><section class="chapter-section" id="en-section-2"><div class="section-number">0.2</div><h2>From the Problem to the Next Step</h2>
+<p>HCE reads a problem in the following sequence:</p>
+<div class="diagnostic-chain"><span>Problem</span><span>Phenomenon</span><span>Phase</span><span>Stage</span><span>Driver</span><span>Quality Factor</span><span>Mechanism</span><span>Method</span><span>Next Step</span></div>
+<p>A problem is the difficulty initially recognized by the people involved. Raw management challenges such as “new customers do not stay,” “members do not participate,” or “newly hired talent leaves early” belong at this level.</p>
+<p>A phenomenon is a label that reorganizes the problem into a comparable form. Examples include early turnover, customer defection, participation stagnation, declining trust, fan disengagement, and breakdowns in transmission. A phenomenon is not a cause. It is an entry point for finding the cause.</p>
+<p>A phase indicates where in the connection cycle the problem is occurring. HCE divides the cycle into five phases: Acquisition, Engagement, Retention, Integration, and Transmission.</p>
+<p>A stage identifies the specific point of progression within each phase. It determines whether the system is at the point of becoming known, being understood, forming trust, or becoming habitual.</p>
+<p>A driver explains why a person moves to the next stage. Drivers are the psychological, social, and cultural forces that move connection forward, including aesthetic value, narrative value, recognition, safety, agency, contribution, shared history, and identity integration.</p>
+<p>Quality Factors indicate the level of quality at which the connection exists. HCE evaluates this through four dimensions: co-presence, trust, depth, and continuity.</p>
+<p>A mechanism is the layer that uses established research to explain why a phenomenon occurs. The mere-exposure effect, processing fluency, self-determination theory, trust models, social penetration theory, and loss aversion are positioned at this level.</p>
+<p>A method is a potential intervention in response to the observed structure. Methods include onboarding design, messaging design, expectation calibration, trust repair, re-entry design, role design, and transmission design.</p>
+<p>The Next Step is the point at which one feasible action is selected from these possibilities under current constraints.</p>
+<p>Through this sequence, an abstract problem becomes a diagnosable structure.</p>
+</section><section class="chapter-section" id="en-section-3"><div class="section-number">0.3</div><h2>The Nine Steps for Using HCE</h2>
+<div class="framework-step-list"><div class="step framework-step"><span>Step 1</span><p>First, state the problem in its original form. “The response to the new service is weak,” “employees do not stay,” or “the community depends excessively on its operators” is sufficient.</p></div><div class="step framework-step"><span>Step 2</span><p>Second, translate it into a phenomenon. Assign it a comparable name, such as customer defection, early turnover, participation stagnation, failed authority transfer, or breakdown of transmission.</p></div><div class="step framework-step"><span>Step 3</span><p>Third, identify the phase. Determine whether the problem is occurring in Acquisition, Engagement, Retention, Integration, or Transmission.</p></div><div class="step framework-step"><span>Step 4</span><p>Fourth, identify the stage. Locate the point among the twelve stages where progression has stopped. It is particularly important to determine whether the system has crossed the GATE stages of Problem Recognition, Trust Formation, and Identity Integration.</p></div><div class="step framework-step"><span>Step 5</span><p>Fifth, examine the drivers. Determine whether the drivers required at that stage are weak, dormant, damaged, or no longer functional.</p></div><div class="step framework-step"><span>Step 6</span><p>Sixth, examine the Quality Factors. Distinguish whether the problem is insufficient contact, insufficient trust, inadequate relational depth, or a loss of continuity in renewal.</p></div><div class="step framework-step"><span>Step 7</span><p>Seventh, explain the structure through mechanisms. Avoid concluding from impressions or intuition alone. Compare the observed structure with existing research to understand why it has emerged.</p></div><div class="step framework-step"><span>Step 8</span><p>Eighth, compare multiple methods. List the possible interventions while considering speed of effect, cost, ethical risk, feasibility, and side effects.</p></div><div class="step framework-step"><span>Step 9</span><p>Ninth, determine the Next Step. Translate the diagnosis into the first action to be tested rather than into a large-scale reform proposal.</p></div></div><p>HCE does not seek to simplify complex problems. It seeks to preserve their complexity while decomposing them into units that can be examined and acted upon.</p>
+</section><section class="chapter-section" id="en-section-4"><div class="section-number">0.4</div><h2>Three Examples</h2><details class="example-accordion"><summary class="example-summary"><div class="example-summary-text"><span class="example-summary-title">Example 1｜The Value of a New Service Is Not Understood</span><span class="example-summary-meta">9 Steps</span></div><span class="example-chevron">＋</span></summary><div class="example-accordion-body"><div class="example-step-grid"><div class="step"><span>Step 1</span><p>The problem is, “Customers are not responding even though the service is sufficiently good.”</p></div><div class="step"><span>Step 2</span><p>The phenomenon is departure before value comprehension.</p></div><div class="step"><span>Step 3</span><p>The phase is Acquisition.</p></div><div class="step"><span>Step 4</span><p>The stage is Attention or Understanding.</p></div><div class="step"><span>Step 5</span><p>Drivers such as narrative value, identity value, and associative value may not be expressed clearly enough.</p></div><div class="step"><span>Step 6</span><p>In terms of Quality Factors, customers may lack sufficient time or attention in contact with the service—in other words, co-presence may be insufficient. The required response is not necessarily to add functionality immediately. The first question is whether the strongest value is being presented before the customer makes a judgment.</p></div><div class="step"><span>Step 7</span><p>Relevant mechanisms include processing fluency, the primacy effect, and the mere-exposure effect.</p></div><div class="step"><span>Step 8</span><p>Compare multiple methods. List possible interventions while considering speed of effect, cost, ethical risk, feasibility, and side effects.</p></div><div class="step"><span>Step 9</span><p>The Next Step is to move the primary value into the first few seconds, the first screen, or the first two sentences and test the difference in response.</p></div></div></div></details><details class="example-accordion"><summary class="example-summary"><div class="example-summary-text"><span class="example-summary-title">Example 2｜Talented Employees Leave</span><span class="example-summary-meta">9 Steps</span></div><span class="example-chevron">＋</span></summary><div class="example-accordion-body"><div class="example-step-grid"><div class="step"><span>Step 1</span><p>The problem is, “A key employee left even though there appeared to be no major dissatisfaction with their compensation or conditions.”</p></div><div class="step"><span>Step 2</span><p>The phenomenon is latent retention collapse.</p></div><div class="step"><span>Step 3</span><p>The phase is Retention.</p></div><div class="step"><span>Step 4</span><p>Progression may have stopped at Participation, Investment, or Habitualization.</p></div><div class="step"><span>Step 5</span><p>The relevant drivers are recognition, agency, contribution, safety, and expectation. Even when salary and title remain unchanged, connection weakens internally when a person’s judgment is not reflected, the meaning of their role is unclear, their contribution is not recognized, or they can no longer sustain expectations for the future.</p></div><div class="step"><span>Step 6</span><p>In terms of Quality Factors, trust, depth, or continuity may have deteriorated. Even when the frequency of contact remains stable, the quality of the relationship declines if candid dialogue, mutual understanding, or the renewal of roles has been lost.</p></div><div class="step"><span>Step 7</span><p>Relevant mechanisms include self-determination theory, psychological safety, organizational justice, expectancy violation, and the cumulative erosion of trust. Turnover often results not from a single event, but from the accumulation of small misalignments and unrepaired disappointments.</p></div><div class="step"><span>Step 8</span><p>Compare multiple methods, including role redesign, participation in decision-making, recognition design, expectation recalibration, periodic relationship reviews, and improved dialogue with managers. Evaluate each option in terms of speed, feasibility, organizational burden, and possible side effects.</p></div><div class="step"><span>Step 9</span><p>The Next Step is not to reduce the reason for departure to a single emotion, but to retrospectively analyze previous interviews, role changes, participation in decision-making, and records of recognition at the driver level.</p></div></div></div></details><details class="example-accordion"><summary class="example-summary"><div class="example-summary-text"><span class="example-summary-title">Example 3｜People Gather in a Community, but Do Not Develop Within It</span><span class="example-summary-meta">9 Steps</span></div><span class="example-chevron">＋</span></summary><div class="example-accordion-body"><div class="example-step-grid"><div class="step"><span>Step 1</span><p>The problem is, “Participants attend events, but sustained activity and voluntary contribution do not emerge.”</p></div><div class="step"><span>Step 2</span><p>The phenomenon is stagnation in the transition from Engagement to Retention.</p></div><div class="step"><span>Step 3</span><p>The relevant phase boundary lies between Engagement and Retention.</p></div><div class="step"><span>Step 4</span><p>Progression has most likely stopped between Trust Formation, Participation, and Investment. Even when awareness and acquisition are successful, participants remain spectators unless drivers such as role, recognition, agency, and contribution have been designed into the community.</p></div><div class="step"><span>Step 5</span><p>The relevant drivers are recognition, agency, contribution, reciprocity, belonging, and shared history. Engagement is unlikely to progress into retention when participants lack a meaningful role, are not entrusted with decisions, cannot see their contributions recognized, and do not accumulate shared history with others.</p></div><div class="step"><span>Step 6</span><p>In terms of Quality Factors, continuity and depth may be insufficient. Even when one-off contact is frequent, relationships remain event-bound if repeated interaction with the same people, mutual understanding, and the renewal of roles are absent.</p></div><div class="step"><span>Step 7</span><p>Relevant mechanisms include self-determination theory, social identity theory, commitment formation, norms of reciprocity, and trust built through shared experience. When people are continually treated as spectators, they are unlikely to develop into voluntary participants with a sense of ownership.</p></div><div class="step"><span>Step 8</span><p>Compare multiple methods, including assigning small roles, designing areas of choice, making contributions visible, creating repeated interaction in small groups, enabling collaboration among participants, and transferring responsibility gradually. Evaluate these options alongside operational burden, barriers to participation, sustainability, and the risk of exclusion.</p></div><div class="step"><span>Step 9</span><p>The Next Step is not to increase abstract appeals to all participants. It is to implement one small role, one area of choice, or one visible form of contribution and observe who progresses toward sustained engagement, and under which conditions.</p></div></div></div></details></section><section class="chapter-section" id="en-section-5"><div class="section-number">0.5</div><h2>Application to Private Relationships</h2>
+<p>HCE is primarily intended for the design of businesses, organizations, brands, products, communities, and cultures. At the same time, the same structures also appear in friendships, families, partnerships, and mentor–disciple relationships.</p>
+<p>Particular care is required when applying HCE to private relationships. It should not be used to manipulate another person’s emotions or behavior. It should be used to understand what has been lost, what remains, and where boundaries should be placed. Reconnection is not always desirable. When safety has been violated or dignity has been damaged, maintaining distance may be more appropriate than restoring the relationship.</p>
+<p>HCE does not provide techniques for moving another person. It provides a perspective for accurately reading the conditions that constitute a relationship.</p>
+</section><section class="chapter-section" id="en-section-6"><div class="section-number">0.6</div><h2>How to Use This Book</h2>
+<p>This book can be read sequentially from beginning to end, but in practice it is also designed to be consulted in reverse from a specific problem.</p>
+<div class="signal-list"><span>A Phase shows the timeline of connection.</span><span>A Stage shows the current position.</span><span>A Driver shows the reason for progression or stagnation.</span><span>A Quality Factor shows the quality of the relationship.</span><span>A Mechanism shows the operating principle.</span><span>A Method shows the available intervention options.</span></div>
+<p>The important point is not to make a judgment using only one concept. Awareness may exist, but engagement will not continue without trust. Repeated contact may occur, but retention remains weak without agency. A relationship may persist for a long time, but it will not progress toward Transmission without Identity Integration.</p>
+<p>The value of HCE lies not in any individual concept, but in the ability to read them together as one connection cycle.</p>
+<p>By the end of this book, readers should take away more than a memory of specialized terminology. They should acquire a way of thinking that allows them to ask, in relation to the problem before them: “Where has progression stopped, what is missing, and what should be tested?”</p>
+<p>This book presents the complete connection cycle examined by HCE. Why does one product remain merely a convenient tool, while another becomes embedded in a person’s self-image, an organization’s culture, or a community’s memory? The core of HCE becomes visible through this difference.</p></section></div>
+<div class="lang-jp"><p>事業が伸びない。優秀な人材が定着しない。顧客は一度使っても戻ってこない。コミュニティに参加者は集まるが、深い関与が生まれない。ブランドの認知はあるのに、信頼や推奨へ進まない。こうした問題は、表面上はマーケティング、組織、人材、プロダクト、文化形成という別々の課題に見える。しかし、その多くは共通する一つの問いに還元できる。</p>
+<blockquote>「人や集団は、どのように対象を知り、関わり、留まり、自分たちの一部として受け入れ、次へ渡していくのか？」</blockquote>
+<p>人は、ある日突然離れるように見える。だが、断絶はその日に始まったのではない。承認が減り、安心が失われ、関わる理由が薄れ、自分の一部だったものが、少しずつ自分の外側へ押し出されていく。</p>
+<p>HCEはこういった見えない変化の背後にある、接続の進行と停滞を読み解くための理論である。対象は、企業、ブランド、プロダクト、組織、コミュニティ、文化、制度、人間関係までを含む。領域ごとに現れる言葉は異なっても、接続が生まれ、弱まり、深まり、断絶し、再構成される過程には、共通する構造がある。</p>
+<p>本書の目的は、理論を暗記させることではない。複雑な問題を、観察可能な構造へ変換し、どこで進行が止まり、何が不足し、どの介入が検討可能かを明らかにすることである。</p>
+<div class="lens-rail">
+<div class="lens-card">
+<span class="lens-kicker">Reading Lens</span>
+<p>この章は問題を構造へ変換する。</p>
+</div>
+</div>
+<section class="chapter-section" id="jp-section-1"><div class="section-number">0.1</div><h2>HCEが扱うもの</h2>
+<p>経営や組織の現場では、結果だけが先に見える。</p>
+<div class="signal-list"><span>売れない。</span><span>続かない。</span><span>辞める。</span><span>参加しない。</span><span>信頼されない。</span><span>推奨されない。</span><span>継承されない。</span></div>
+<p>しかし、結果だけを見ても原因は特定できない。</p>
+<p>「売れない」という同じ問題でも、存在を知られていない場合、注意を獲得できていない場合、価値を理解されていない場合、信頼形成で止まっている場合では、必要な対応は異なる。</p>
+<p>「社員が辞めた」という同じ結果でも、承認の不足、主体性の喪失、安全の低下、貢献感の消失、期待の枯渇では、組織が修正すべき構造は異なる。</p>
+<p>HCEは、最終的に現れた結果を、その前段階にある接続構造へ分解する。</p>
+<p>そのために、HCEは三つの問いを順番に扱う。</p>
+<div class="signal-list"><span>今、どこで止まっているのか。</span><span>なぜ、そこで止まっているのか。</span><span>次に、何を検討できるのか。</span></div>
+<p>ここで重要なのは、HCEが単一の正解を命令する意思決定装置ではないという点である。HCEは、観察対象を整理し、複数の可能性を比較し、介入の選択肢とリスクを可視化するためのナビゲーション体系である。最終的な判断は、目的、文脈、倫理、制約条件を踏まえて、当事者が行う。</p>
+</section><section class="chapter-section" id="jp-section-2"><div class="section-number">0.2</div><h2>問題から次の一手まで</h2>
+<p>HCEでは、問題を次の順序で読み解く。</p>
+<div class="diagnostic-chain"><span>問題（Problem）</span><span>現象（Phenomenon）</span><span>フェーズ（Phase）</span><span>ステージ（Stage）</span><span>ドライバー（Driver）</span><span>クオリティファクター（Quality Factor）</span><span>メカニズム（Mechanism）</span><span>メソッド（Method）</span><span>次の一手（Next Step）</span></div>
+<p>問題とは、当事者が最初に認識している困りごとである。「新規顧客が定着しない」「会員が活動しない」「採用した人材が早期離職する」といった、生の経営課題がここに当たる。</p>
+<p>現象とは、その問題を比較可能な形に整理した名称である。早期離職、顧客離反、参加停滞、信頼低下、ファン離れ、継承断絶などが該当する。現象は原因ではない。原因を探すための入口である。</p>
+<p>フェーズは、接続サイクルのどの段階で問題が起きているかを示す。HCEでは、獲得、関与、維持、統合、継承の五つに分ける。</p>
+<p>ステージは、各フェーズ内の具体的な進行位置を示す。存在を知る段階なのか、理解する段階なのか、信頼を形成する段階なのか、習慣化する段階なのかを特定する。</p>
+<p>ドライバーは、人が次の段階へ進む理由を示す。美的価値、物語的価値、承認、安全、主体性、貢献、共有履歴、アイデンティティ統合など、接続を動かす心理的・社会的・文化的要因である。</p>
+<p>クオリティファクターは、その接続がどの程度の品質で成立しているかを示す。共在、信頼、深さ、継続性の四つで確認する。</p>
+<p>メカニズムは、なぜその現象が起きるのかを既存研究によって説明する層である。単純接触効果、処理流暢性、自己決定理論、信頼モデル、社会的浸透理論、損失回避などがここに位置づく。</p>
+<p>メソッドは、観察された構造に対して検討可能な介入である。オンボーディング設計、メッセージング設計、期待値調整、信頼修復、再参入設計、役割設計、継承設計などが含まれる。</p>
+<p>次の一手は、その中から、現在の制約下で実行可能な行動を一つ選ぶ段階である。</p>
+<p>この順序によって、抽象的な問題は、診断可能な構造へ変わる。</p>
+</section><section class="chapter-section" id="jp-section-3"><div class="section-number">0.3</div><h2>HCEを使う九つのステップ</h2>
+<div class="framework-step-list"><div class="step framework-step"><span>第1</span><p>第１に、問題をそのまま言葉にする。「新しいサービスの反応が弱い」「社員が定着しない」「コミュニティが運営者依存になっている」といった状態でよい。</p></div><div class="step framework-step"><span>第2</span><p>第２に、現象へ変換する。顧客離反、早期離職、参加停滞、権威移行の失敗、継承断絶など、比較可能な現象名を与える。</p></div><div class="step framework-step"><span>第3</span><p>第３に、フェーズを特定する。問題が獲得、関与、維持、統合、継承のどこで起きているかを確認する。</p></div><div class="step framework-step"><span>第4</span><p>第４に、ステージを特定する。十二のステージのうち、進行が止まった位置を探す。特に、問題認識、信頼形成、アイデンティティ統合というGATEステージを越えているかは重要である。</p></div><div class="step framework-step"><span>第5</span><p>第５に、ドライバーを確認する。そのステージで必要なドライバーが弱いのか、休眠しているのか、損傷しているのか、すでに機能しなくなっているのかを見極める。</p></div><div class="step framework-step"><span>第6</span><p>第６に、クオリティファクターを確認する。接触量が足りないのか、信頼が足りないのか、関係の深さが不足しているのか、更新の継続性が失われているのかを区別する。</p></div><div class="step framework-step"><span>第7</span><p>第７に、メカニズムで説明する。印象や直感だけで結論づけず、既存研究と照合し、なぜその構造が生じているのかを理解する。</p></div><div class="step framework-step"><span>第8</span><p>第８に、複数のメソッドを比較する。即効性、費用、倫理的リスク、実行可能性、副作用を踏まえて、介入候補を並べる。</p></div><div class="step framework-step"><span>第9</span><p>第９に、次の一手を決める。診断を、大規模な改革案ではなく、最初に検証すべき一つの行動へ変換する。</p></div></div><p>HCEが目指すのは、複雑な問題を単純化することではない。複雑さを保ったまま、扱える単位に分解することである。</p>
+</section><section class="chapter-section" id="jp-section-4"><div class="section-number">0.4</div><h2>三つの実例</h2><details class="example-accordion"><summary class="example-summary"><div class="example-summary-text"><span class="example-summary-title">例１｜新しいサービスの価値が伝わらない</span><span class="example-summary-meta">9ステップ</span></div><span class="example-chevron">＋</span></summary><div class="example-accordion-body"><div class="example-step-grid"><div class="step"><span>第1</span><p>問題は、「十分に良いサービスなのに、顧客が反応しない」である。</p></div><div class="step"><span>第2</span><p>現象は、価値理解前の離脱</p></div><div class="step"><span>第3</span><p>フェーズは、獲得</p></div><div class="step"><span>第4</span><p>ステージは、注目または理解</p></div><div class="step"><span>第5</span><p>ドライバーは、物語的価値、アイデンティティ価値、連想価値などが十分に表現されていない可能性がある。</p></div><div class="step"><span>第6</span><p>クオリティファクターは、顧客がサービスと接触する時間や注意、つまり共在が不足しているかもしれない。ここで必要なのは、直ちに機能を追加することとは限らない。最も強い価値が、顧客の判断前に提示されているかを確認する。</p></div><div class="step"><span>第7</span><p>メカニズムとしては、処理流暢性や初頭効果、単純接触効果が関係する。</p></div><div class="step"><span>第8</span><p>複数のメソッドを比較する。即効性、費用、倫理的リスク、実行可能性、副作用を踏まえて、介入候補を並べる。</p></div><div class="step"><span>第9</span><p>次の一手は、主要価値を最初の数秒、最初の画面、最初の二文へ移動し、反応差を検証することである。</p></div></div></div></details><details class="example-accordion"><summary class="example-summary"><div class="example-summary-text"><span class="example-summary-title">例２｜優秀な社員が辞める</span><span class="example-summary-meta">9ステップ</span></div><span class="example-chevron">＋</span></summary><div class="example-accordion-body"><div class="example-step-grid"><div class="step"><span>第1</span><p>問題は、「待遇に大きな不満が見えなかったのに、重要人材が離職した」である。</p></div><div class="step"><span>第2</span><p>現象は、潜在的な維持崩壊である。</p></div><div class="step"><span>第3</span><p>フェーズは、維持である。</p></div><div class="step"><span>第4</span><p>ステージは、参加、投資、習慣化のいずれかで止まっていた可能性がある。</p></div><div class="step"><span>第5</span><p>ドライバーは、承認、主体性、貢献、安全、期待である。給与や肩書が維持されていても、自分の判断が反映されない、役割の意味が見えない、貢献が認識されない、将来への期待が持てない状態では、接続は内部から弱まる。</p></div><div class="step"><span>第6</span><p>クオリティファクターでは、信頼、深さ、継続性のいずれかが損なわれていた可能性がある。表面的な接触頻度が維持されていても、率直な対話、相互理解、役割更新が失われていれば、関係の質は低下する。</p></div><div class="step"><span>第7</span><p>メカニズムとしては、自己決定理論、心理的安全性、組織的公正、期待違反、信頼の累積的低下が関係する。離職は単一の出来事ではなく、小さな不一致や未修復の失望が蓄積した結果として生じることが多い。</p></div><div class="step"><span>第8</span><p>複数のメソッドを比較する。役割再設計、意思決定への参加、承認設計、期待値の再調整、定期的な関係レビュー、管理職との対話改善などを、即効性、実行可能性、組織負荷、副作用の観点から検討する。</p></div><div class="step"><span>第9</span><p>次の一手は、退職理由を一つの感情にまとめず、過去の面談、役割変更、意思決定参加、承認履歴をドライバー単位で遡及分析することである。</p></div></div></div></details><details class="example-accordion"><summary class="example-summary"><div class="example-summary-text"><span class="example-summary-title">例3｜コミュニティに人は集まるが、育たない</span><span class="example-summary-meta">9ステップ</span></div><span class="example-chevron">＋</span></summary><div class="example-accordion-body"><div class="example-step-grid"><div class="step"><span>第1</span><p>問題は、「イベントには参加者が来るが、継続的な活動や自発的な貢献が生まれない」である。</p></div><div class="step"><span>第2</span><p>現象は、関与から維持への移行停滞である。</p></div><div class="step"><span>第3</span><p>フェーズは、関与から維持への移行領域である。</p></div><div class="step"><span>第4</span><p>ステージは、信頼形成から参加、投資の間で止まっている可能性が高い。認知や集客が成功していても、役割、承認、主体性、貢献のドライバーが設計されていなければ、参加者は観客のまま残る。</p></div><div class="step"><span>第5</span><p>ドライバーは、承認、主体性、貢献、相互性、所属感、共有履歴である。参加者が自分の役割を持たず、判断を委ねられず、貢献が可視化されず、他者との履歴が蓄積されなければ、関与は継続へ移行しにくい。</p></div><div class="step"><span>第6</span><p>クオリティファクターでは、継続性と深さが不足している可能性がある。単発の接触が多くても、同じ人との反復、相互理解、役割の更新がなければ、関係はイベント単位で途切れる。</p></div><div class="step"><span>第7</span><p>メカニズムとしては、自己決定理論、社会的アイデンティティ理論、コミットメント形成、相互性規範、共有経験による信頼形成が関係する。人は観客として扱われ続けると、自発的な当事者へ移行しにくい。</p></div><div class="step"><span>第8</span><p>複数のメソッドを比較する。小さな役割の付与、選択権の設計、貢献の可視化、少人数単位の反復接触、参加者同士の協働、段階的な責任移譲などを、運営負荷、参加障壁、継続可能性、排他性のリスクとともに検討する。</p></div><div class="step"><span>第9</span><p>次の一手は、参加者全体へ抽象的な呼びかけを増やすことではなく、小さな役割、選択権、貢献の可視化を一つ実装し、誰がどの条件で継続関与へ進むかを観察することである。</p></div></div></div></details></section><section class="chapter-section" id="jp-section-5"><div class="section-number">0.5</div><h2>私的領域への応用</h2>
+<p>HCEは、主として事業、組織、ブランド、プロダクト、コミュニティ、文化の設計に用いることを想定している。同時に、同じ構造は、友情、家族、パートナーシップ、師弟関係にも現れる。</p>
+<p>ただし、私的関係へ応用する際には、特に慎重さが必要である。相手の感情や行動を操作するために使うのではなく、何が失われ、何が残り、どこに境界を置くべきかを理解するために使う。再接続が常に望ましいとは限らない。安全侵害や尊厳損傷がある場合、関係を戻すより、距離を保つことが適切な場合もある。</p>
+<p>HCEが提供するのは、相手を動かす技術ではない。関係を構成している条件を見誤らないための視点である。</p>
+</section><section class="chapter-section" id="jp-section-6"><div class="section-number">0.6</div><h2>この本の読み方</h2>
+<p>本書は、最初から最後まで順番に読むこともできるが、実務では問題から逆引きして使うことを想定している。</p>
+<div class="signal-list"><span>フェーズは、接続の時間軸を示す。</span><span>ステージは、現在地を示す。</span><span>ドライバーは、進行または停滞の理由を示す。</span><span>クオリティファクターは、関係の品質を示す。</span><span>メカニズムは、作用原理を示す。</span><span>メソッドは、介入の選択肢を示す。</span></div>
+<p>重要なのは、どれか一つの概念だけで判断しないことである。認知が取れていても信頼がなければ関与は続かない。反復接触があっても主体性がなければ維持は弱い。長く続いていても、アイデンティティ統合がなければ継承には進まない。</p>
+<p>HCEの価値は、概念それぞれではなく、それらを一つの接続サイクルとして読めることにある。</p>
+<p>本書を読み終えたとき、読者が持ち帰るべきものは、専門用語の記憶ではない。目の前の問題に対して、「どこで止まり、何が不足し、何を検証すべきか」を構造的に問える思考法である。</p>
+<p>本書では、HCEが扱う接続サイクルの全体像を示す。なぜ、ある製品は便利な道具のまま終わり、ある存在は人の自己像、組織文化、共同体の記憶へ組み込まれていくのか。その違いから、HCEの中核を明らかにする。</p></section></div>
+</main>
+</div>
+<a class="next-page" href="introduction.html"><div><span class="lang-en">Next</span><span class="lang-jp">次へ</span><strong class="lang-en">Introduction</strong><strong class="lang-jp">導入</strong></div><div>03 →</div></a>
+<footer class="site-footer">Copyright © 2026 Haruno Ayukai. All Rights Reserved. Human Connection Ecosystem｜The Structure of Connection.</footer>
+<script>
+function setLang(l){document.documentElement.dataset.lang=l;document.documentElement.lang=l==='jp'?'ja':'en';localStorage.setItem('hce-lang',l)}
+setLang(localStorage.getItem('hce-lang')||'en');
+
+const menu=document.getElementById('siteMenu'),backdrop=document.getElementById('siteMenuBackdrop');
+function openMenu(){menu.classList.add('open');menu.setAttribute('aria-hidden','false');backdrop.hidden=false}
+function closeMenu(){menu.classList.remove('open');menu.setAttribute('aria-hidden','true');backdrop.hidden=true}
+document.getElementById('menuToggle').addEventListener('click',openMenu);
+document.getElementById('siteMenuClose').addEventListener('click',closeMenu);
+backdrop.addEventListener('click',closeMenu);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:0,rootMargin:'0px 0px -4% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+function syncTocTargets(){
+  const lang=document.documentElement.dataset.lang||'en';
+  document.querySelectorAll('.toc a').forEach(a=>{
+    const href = lang==='jp' ? a.dataset.jpHref : a.dataset.enHref;
+    a.setAttribute('href', href);
+  });
+}
+const originalSetLang = setLang;
+setLang = function(l){ originalSetLang(l); syncTocTargets(); }
+syncTocTargets();
+
+document.querySelectorAll('.toc a').forEach(a=>{
+  a.addEventListener('click', function(e){
+    const href = this.getAttribute('href');
+    const target = href ? document.querySelector(href) : null;
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+      document.querySelectorAll('.toc a').forEach(x=>x.classList.remove('active'));
+      this.classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
