@@ -2027,30 +2027,87 @@ html[data-lang="jp"] .rail-label{
   touch-action:manipulation;
 }
 
+
+
+/* v5.0: separate global site navigation from the in-page section rail */
+.site-brand{display:block;text-decoration:none}
+.header-actions{display:flex;align-items:center;gap:16px;margin-left:auto}
+.site-menu-toggle{
+  width:42px;height:42px;border:1px solid var(--line);border-radius:50%;
+  background:rgba(255,255,255,.84);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:4px;cursor:pointer;padding:0;
+  box-shadow:0 10px 30px rgba(18,24,33,.06);transition:.22s ease;
+}
+.site-menu-toggle:hover{background:#fff;border-color:rgba(201,161,95,.52);transform:translateY(-1px)}
+.hamburger-line{display:block;width:16px;height:1px;background:var(--ink-soft);transition:.25s ease}
+body.site-menu-open{overflow:hidden}
+body.site-menu-open .site-menu-toggle .hamburger-line:nth-child(1){transform:translateY(5px) rotate(45deg)}
+body.site-menu-open .site-menu-toggle .hamburger-line:nth-child(2){opacity:0}
+body.site-menu-open .site-menu-toggle .hamburger-line:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
+.site-menu-backdrop{position:fixed;inset:0;z-index:140;background:rgba(18,24,33,.24);backdrop-filter:blur(4px);opacity:0;transition:opacity .3s ease}
+.site-menu-backdrop.visible{opacity:1}
+.site-menu{
+  position:fixed;top:0;right:0;bottom:0;z-index:150;width:min(440px,92vw);
+  padding:22px 24px 28px;background:rgba(251,251,250,.97);backdrop-filter:blur(22px);
+  border-left:1px solid rgba(201,161,95,.25);box-shadow:-28px 0 80px rgba(18,24,33,.14);
+  transform:translateX(104%);transition:transform .38s cubic-bezier(.2,.75,.15,1);overflow-y:auto;
+}
+.site-menu.open{transform:translateX(0)}
+.site-menu-head{display:flex;align-items:flex-start;justify-content:space-between;padding:4px 0 20px;border-bottom:1px solid var(--line-soft)}
+.site-menu-title{display:flex;flex-direction:column;gap:5px;font-family:var(--utility);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-quiet)}
+.site-menu-title strong{font-family:var(--display);font-size:30px;font-weight:400;letter-spacing:.04em;color:var(--gold-dim)}
+.site-menu-close{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:transparent;cursor:pointer;font-family:var(--display);font-size:26px;line-height:1;color:var(--ink-soft)}
+.site-menu-links{display:flex;flex-direction:column;padding-top:12px}
+.site-menu-links a{display:grid;grid-template-columns:34px 1fr;gap:12px;padding:16px 8px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line-soft);transition:.2s ease}
+.site-menu-links a:hover{padding-left:14px;background:rgba(255,255,255,.66)}
+.site-menu-links a.current{color:var(--gold-dim)}
+.menu-index{font-family:var(--utility);font-size:9px;letter-spacing:.12em;color:var(--gold-dim);padding-top:4px}
+.site-menu-links b{display:block;font-family:var(--display);font-size:24px;font-weight:400;line-height:1.05}
+.site-menu-links small{display:block;margin-top:6px;font-family:var(--body);font-size:13px;line-height:1.35;color:var(--ink-quiet)}
+html[data-lang="jp"] .site-menu-links b,html[data-lang="jp"] .site-menu-links small{font-family:var(--jp)}
+@media(max-width:760px){
+  .topbar{justify-content:space-between}
+  .header-actions{gap:10px}
+  .site-menu-toggle{width:40px;height:40px}
+  .site-menu{width:min(390px,94vw);padding:18px 18px 24px}
+  .site-menu-links a{padding:14px 6px}
+  .site-menu-links b{font-size:21px}
+  .site-menu-links small{font-size:12px}
+}
 </style>
 </head>
 <body>
 
 <header class="topbar">
-  <div class="brand"><strong>HCE</strong><span>｜HUMAN CONNECTION ECOSYSTEM</span></div><button class="menu-toggle" id="menuToggle" aria-label="Open navigation">MENU</button>
-  <nav class="nav">
-    <a href="#hero" data-section="hero"><span class="lang-en">Top</span><span class="lang-jp">トップ</span></a>
-    <a href="#cycle" data-section="cycle"><span class="lang-en">Cycle</span><span class="lang-jp">サイクル</span></a>
-    <a href="#scale" data-section="scale"><span class="lang-en">Scale</span><span class="lang-jp">スケール</span></a>
-    <a href="#phases" data-section="phases"><span class="lang-en">Phases</span><span class="lang-jp">フェーズ</span></a>
-    <a href="#stages" data-section="stages"><span class="lang-en">Stages</span><span class="lang-jp">ステージ</span></a>
-    <a href="#drivers" data-section="drivers"><span class="lang-en">Drivers</span><span class="lang-jp">ドライバー</span></a>
-    <a href="#quality" data-section="quality"><span class="lang-en">Quality</span><span class="lang-jp">品質因子</span></a>
-    <a href="#trust" data-section="trust"><span class="lang-en">Trust</span><span class="lang-jp">信頼</span></a>
-    <a href="#break" data-section="break"><span class="lang-en">Reconnect</span><span class="lang-jp">再接続</span></a>
-    <a href="#os" data-section="os"><span class="lang-en">Framework</span><span class="lang-jp">実装体系</span></a>
-  </nav>
-  <div class="lang-toggle">
-    <button class="en-btn" onclick="setLang('en')">EN</button>
-    <span class="divider">/</span>
-    <button class="jp-btn" onclick="setLang('jp')">JP</button>
+  <a class="brand site-brand" href="index.html" aria-label="HCE home"><strong>HCE</strong><span>｜HUMAN CONNECTION ECOSYSTEM</span></a>
+  <div class="header-actions">
+    <div class="lang-toggle" aria-label="Language selection">
+      <button class="en-btn" onclick="setLang('en')">EN</button>
+      <span class="divider">/</span>
+      <button class="jp-btn" onclick="setLang('jp')">JP</button>
+    </div>
+    <button class="site-menu-toggle" id="menuToggle" type="button" aria-label="Open site navigation" aria-controls="siteMenu" aria-expanded="false">
+      <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+    </button>
   </div>
 </header>
+
+<div class="site-menu-backdrop" id="siteMenuBackdrop" hidden></div>
+<aside class="site-menu" id="siteMenu" aria-hidden="true" aria-label="Site navigation">
+  <div class="site-menu-head">
+    <div class="site-menu-title"><strong>HCE</strong><span class="lang-en">Site Navigation</span><span class="lang-jp">サイトナビゲーション</span></div>
+    <button class="site-menu-close" id="siteMenuClose" type="button" aria-label="Close site navigation">×</button>
+  </div>
+  <nav class="site-menu-links">
+    <a href="index.html" class="current"><span class="menu-index">01</span><span><b class="lang-en">Theory</b><b class="lang-jp">理論</b><small class="lang-en">The HCE core structure</small><small class="lang-jp">HCEの理論骨格</small></span></a>
+    <a href="introduction.html"><span class="menu-index">02</span><span><b class="lang-en">Introduction</b><b class="lang-jp">導入</b><small class="lang-en">Why this inquiry began</small><small class="lang-jp">この探究が始まった理由</small></span></a>
+    <a href="motivation.html"><span class="menu-index">03</span><span><b class="lang-en">Author's Motivation</b><b class="lang-jp">執筆の動機</b><small class="lang-en">The personal and intellectual origin</small><small class="lang-jp">個人的・知的な出発点</small></span></a>
+    <a href="research.html"><span class="menu-index">04</span><span><b class="lang-en">Research & Evidence</b><b class="lang-jp">研究・学術根拠</b><small class="lang-en">Evidence behind the theory</small><small class="lang-jp">理論を支える根拠</small></span></a>
+    <a href="book.html"><span class="menu-index">05</span><span><b class="lang-en">Book</b><b class="lang-jp">書籍</b><small class="lang-en">Structure, chapters, and progress</small><small class="lang-jp">構成・章・執筆状況</small></span></a>
+    <a href="applications.html"><span class="menu-index">06</span><span><b class="lang-en">Applications</b><b class="lang-jp">応用</b><small class="lang-en">Audits, tools, and projects</small><small class="lang-jp">診断・ツール・プロジェクト</small></span></a>
+    <a href="about.html"><span class="menu-index">07</span><span><b class="lang-en">About</b><b class="lang-jp">著者・プロジェクト</b><small class="lang-en">Author and project information</small><small class="lang-jp">著者とプロジェクト情報</small></span></a>
+  </nav>
+</aside>
 
 <button type="button" class="top-link" onclick="jumpToHCESection('hero')"><span class="lang-en">Top</span><span class="lang-jp">Topへ</span></button>
 
@@ -2950,5 +3007,38 @@ html[data-lang="jp"] .rail-label{
 })();
 </script>
 
+
+<script>
+(function(){
+  const toggle=document.getElementById('menuToggle');
+  const menu=document.getElementById('siteMenu');
+  const close=document.getElementById('siteMenuClose');
+  const backdrop=document.getElementById('siteMenuBackdrop');
+  if(!toggle || !menu || !backdrop) return;
+
+  function openSiteMenu(){
+    backdrop.hidden=false;
+    requestAnimationFrame(()=>backdrop.classList.add('visible'));
+    menu.classList.add('open');
+    menu.setAttribute('aria-hidden','false');
+    toggle.setAttribute('aria-expanded','true');
+    document.body.classList.add('site-menu-open');
+    if(close) close.focus();
+  }
+  function closeSiteMenu(){
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden','true');
+    toggle.setAttribute('aria-expanded','false');
+    document.body.classList.remove('site-menu-open');
+    backdrop.classList.remove('visible');
+    setTimeout(()=>{backdrop.hidden=true;},300);
+  }
+  toggle.addEventListener('click',()=>menu.classList.contains('open')?closeSiteMenu():openSiteMenu());
+  if(close) close.addEventListener('click',closeSiteMenu);
+  backdrop.addEventListener('click',closeSiteMenu);
+  menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeSiteMenu));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape' && menu.classList.contains('open')) closeSiteMenu();});
+})();
+</script>
 </body>
 </html>
