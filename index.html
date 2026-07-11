@@ -2085,6 +2085,29 @@ html[data-lang="jp"] .site-menu-links b,html[data-lang="jp"] .site-menu-links sm
   .site-menu-links b{font-size:21px}
   .site-menu-links small{font-size:12px}
 }
+
+/* vNext: visual-first navigation and Matrix entry */
+.site-menu-links .menu-group{border-bottom:1px solid var(--line-soft)}
+.site-menu-links .menu-group>summary{list-style:none;display:grid;grid-template-columns:34px 1fr 20px;gap:12px;padding:16px 8px;cursor:pointer;align-items:start;color:var(--ink)}
+.site-menu-links .menu-group>summary::-webkit-details-marker{display:none}
+.site-menu-links .menu-group>summary:hover{padding-left:14px;background:rgba(255,255,255,.66)}
+.site-menu-links .menu-group.current>summary{color:var(--gold-dim)}
+.site-menu-links .menu-group .menu-caret{font-family:var(--utility);font-size:14px;color:var(--gold-dim);padding-top:4px;transition:transform .2s ease}
+.site-menu-links .menu-group[open] .menu-caret{transform:rotate(45deg)}
+.site-menu-links .submenu{display:flex;flex-direction:column;padding:0 8px 12px 46px}
+.site-menu-links .submenu a{display:block!important;padding:10px 12px!important;border:0!important;border-left:1px solid rgba(201,161,95,.24)!important;font-family:var(--utility);font-size:10px;letter-spacing:.10em;text-transform:uppercase;color:var(--ink-quiet)}
+.site-menu-links .submenu a:hover{padding-left:17px!important;color:var(--gold-dim);background:rgba(255,255,255,.66)}
+.site-menu-links .submenu a.matrix-link{margin:3px 0 5px;border:1px solid rgba(201,161,95,.38)!important;border-radius:12px;background:linear-gradient(90deg,rgba(201,161,95,.12),rgba(255,255,255,.62));color:var(--gold-dim);font-weight:600}
+html[data-lang="jp"] .site-menu-links .submenu a{font-family:var(--jp);letter-spacing:.02em;text-transform:none}
+.matrix-cta{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin:28px 0 8px;padding:22px 24px;border:1px solid rgba(201,161,95,.28);border-radius:20px;background:linear-gradient(135deg,rgba(249,247,242,.88),rgba(255,255,255,.72));box-shadow:0 16px 36px rgba(18,24,33,.04)}
+.matrix-cta .cta-kicker{display:block;font-family:var(--utility)!important;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:7px}
+.matrix-cta strong{display:block;font-family:var(--display);font-size:25px;font-weight:400;line-height:1.12;color:var(--ink)}
+.matrix-cta p{margin:7px 0 0!important;font-size:14px!important;line-height:1.55!important;color:var(--ink-soft)}
+.matrix-cta .cta-button{display:inline-flex;align-items:center;justify-content:center;min-width:148px;padding:12px 16px;border-radius:999px;border:1px solid rgba(201,161,95,.42);background:#fff;font-family:var(--utility);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dim);box-shadow:0 10px 26px rgba(18,24,33,.05)}
+.matrix-cta:hover .cta-button{background:var(--ink);border-color:var(--ink);color:#fff}
+html[data-lang="jp"] .matrix-cta strong,html[data-lang="jp"] .matrix-cta p,html[data-lang="jp"] .matrix-cta .cta-button{font-family:var(--jp)}
+@media(max-width:620px){.matrix-cta{grid-template-columns:1fr;padding:18px}.matrix-cta .cta-button{width:100%}.site-menu-links .submenu{padding-left:38px}}
+
 </style>
 </head>
 <body>
@@ -2110,14 +2133,32 @@ html[data-lang="jp"] .site-menu-links b,html[data-lang="jp"] .site-menu-links sm
     <button class="site-menu-close" id="siteMenuClose" type="button" aria-label="Close site navigation">×</button>
   </div>
   <nav class="site-menu-links">
-    <a href="index.html" class="current"><span class="menu-index">01</span><span><b class="lang-en">Theory</b><b class="lang-jp">理論</b><small class="lang-en">The HCE core structure</small><small class="lang-jp">HCEの理論骨格</small></span></a>
-    <a href="how-to-read.html"><span class="menu-index">02</span><span><b class="lang-en">Introduction</b><b class="lang-jp">HCEの読み方</b><small class="lang-en">Why this inquiry began</small><small class="lang-jp">この探究が始まった理由</small></span></a>
-    <a href="motivation.html"><span class="menu-index">03</span><span><b class="lang-en">Author's Motivation</b><b class="lang-jp">執筆の動機</b><small class="lang-en">The personal and intellectual origin</small><small class="lang-jp">個人的・知的な出発点</small></span></a>
-    <a href="research.html"><span class="menu-index">04</span><span><b class="lang-en">Research & Evidence</b><b class="lang-jp">研究・学術根拠</b><small class="lang-en">Evidence behind the theory</small><small class="lang-jp">理論を支える根拠</small></span></a>
-    <a href="book.html"><span class="menu-index">05</span><span><b class="lang-en">Book</b><b class="lang-jp">書籍</b><small class="lang-en">Structure, chapters, and progress</small><small class="lang-jp">構成・章・執筆状況</small></span></a>
-    <a href="applications.html"><span class="menu-index">06</span><span><b class="lang-en">Applications</b><b class="lang-jp">応用</b><small class="lang-en">Audits, tools, and projects</small><small class="lang-jp">診断・ツール・プロジェクト</small></span></a>
-    <a href="https://dc-clairdelune.notion.site/Project-Portfolio-9ab264441e5a446a9955b83cb952b801" target="_blank" rel="noopener noreferrer"><span class="menu-index">07</span><span><b class="lang-en">About</b><b class="lang-jp">著者・プロジェクト</b><small class="lang-en">Author and project information</small><small class="lang-jp">著者とプロジェクト情報</small></span></a>
-  </nav>
+  <details class="menu-group current" open>
+    <summary><span class="menu-index">01</span><span><b class="lang-en">Theory</b><b class="lang-jp">理論</b><small class="lang-en">Choose the way you understand best</small><small class="lang-jp">理解しやすい入口から全体構造へ</small></span><span class="menu-caret">＋</span></summary>
+    <div class="submenu">
+      <a href="index.html#hero"><span class="lang-en">Theory Overview</span><span class="lang-jp">理論の全体像</span></a>
+      <a class="matrix-link" href="matrix.html"><span class="lang-en">Full HCE Matrix</span><span class="lang-jp">HCE統合マトリクス</span></a>
+      <a href="index.html#phases"><span class="lang-en">5 Phases</span><span class="lang-jp">5フェーズ</span></a>
+      <a href="index.html#stages"><span class="lang-en">12 Stages</span><span class="lang-jp">12ステージ</span></a>
+      <a href="index.html#drivers"><span class="lang-en">27 Drivers</span><span class="lang-jp">27ドライバー</span></a>
+      <a href="index.html#quality"><span class="lang-en">Quality Factors</span><span class="lang-jp">クオリティファクター</span></a>
+    </div>
+  </details>
+  <details class="menu-group ">
+    <summary><span class="menu-index">02</span><span><b class="lang-en">How to Read</b><b class="lang-jp">HCEの読み方</b><small class="lang-en">From diagnosis to the next step</small><small class="lang-jp">診断から次の一手へ</small></span><span class="menu-caret">＋</span></summary>
+    <div class="submenu">
+      <a href="how-to-read.html#en-section-2" data-en-link="how-to-read.html#en-section-2" data-jp-link="how-to-read.html#jp-section-2"><span class="lang-en">Diagnostic Flow</span><span class="lang-jp">診断フロー</span></a>
+      <a href="how-to-read.html#en-section-3" data-en-link="how-to-read.html#en-section-3" data-jp-link="how-to-read.html#jp-section-3"><span class="lang-en">Nine Steps</span><span class="lang-jp">九つのステップ</span></a>
+      <a href="how-to-read.html#en-section-4" data-en-link="how-to-read.html#en-section-4" data-jp-link="how-to-read.html#jp-section-4"><span class="lang-en">Applied Cases</span><span class="lang-jp">三つの実例</span></a>
+    </div>
+  </details>
+  <a href="introduction.html"><span class="menu-index">03</span><span><b class="lang-en">Introduction</b><b class="lang-jp">導入</b><small class="lang-en">Why this inquiry began</small><small class="lang-jp">この探究が始まった理由</small></span></a>
+  <a href="motivation.html"><span class="menu-index">04</span><span><b class="lang-en">Author's Motivation</b><b class="lang-jp">執筆の動機</b><small class="lang-en">The personal and intellectual origin</small><small class="lang-jp">個人的・知的な出発点</small></span></a>
+  <a href="research.html"><span class="menu-index">05</span><span><b class="lang-en">Research &amp; Evidence</b><b class="lang-jp">研究・学術根拠</b><small class="lang-en">Evidence behind the theory</small><small class="lang-jp">理論を支える根拠</small></span></a>
+  <a href="book.html"><span class="menu-index">06</span><span><b class="lang-en">Book</b><b class="lang-jp">書籍</b><small class="lang-en">Structure, chapters, and progress</small><small class="lang-jp">構成・章・執筆状況</small></span></a>
+  <a href="applications.html"><span class="menu-index">07</span><span><b class="lang-en">Applications</b><b class="lang-jp">応用</b><small class="lang-en">Audits, tools, and projects</small><small class="lang-jp">診断・ツール・プロジェクト</small></span></a>
+  <a href="about.html"><span class="menu-index">08</span><span><b class="lang-en">About</b><b class="lang-jp">著者・プロジェクト</b><small class="lang-en">Author and project information</small><small class="lang-jp">著者とプロジェクト情報</small></span></a>
+</nav>
 </aside>
 
 <button type="button" class="top-link" onclick="jumpToHCESection('hero')"><span class="lang-en">Top</span><span class="lang-jp">Topへ</span></button>
@@ -2333,7 +2374,7 @@ Recognition. A lack, value, or presence begins to appear.</p>
       <article class="engine-card"><h3><span class="lang-en">Next Step</span><span class="lang-jp">次の一手</span></h3><p class="lang-en">Translate diagnosis into repair, design, and the next move.</p><p class="lang-jp">診断を、修復・設計・継承の次の一手へ変換する。</p></article>
     </div>
   </div>
-</section>
+<a class="matrix-cta" href="matrix.html"><div><span class="cta-kicker lang-en">Visual Operating Map</span><span class="cta-kicker lang-jp">視覚型オペレーティングマップ</span><strong class="lang-en">See the complete HCE system in one view.</strong><strong class="lang-jp">HCEの全構造を、一枚で見る。</strong><p class="lang-en">Move across phases, stages, drivers, mechanisms, methods, quality factors, and diagnostic questions without losing the whole.</p><p class="lang-jp">フェーズ、ステージ、ドライバー、メカニズム、メソッド、品質因子、診断質問を、全体像を失わず横断する。</p></div><span class="cta-button"><span class="lang-en">Open Matrix →</span><span class="lang-jp">Matrixを開く →</span></span></a></section>
 
 <script>
   function setLang(l){
