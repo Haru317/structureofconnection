@@ -25,7 +25,7 @@ body{padding-top:74px;overflow-x:hidden;color:var(--ink);font-family:var(--body)
 .matrix-home,.matrix-guide{padding:9px 13px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--gold-dim);background:rgba(255,255,255,.76);font:600 10px var(--utility);letter-spacing:.10em;text-transform:uppercase}
 .matrix-viewport{width:100%;overflow:auto;padding:18px 0 30px;overscroll-behavior-x:contain}
 .matrix-note{position:sticky;left:16px;z-index:5;display:inline-flex;margin:0 0 10px 16px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.90);border:1px solid var(--line);font:600 10px var(--utility);color:var(--gold-dim);letter-spacing:.05em}
-.sheet{width:1920px;min-height:1080px;margin:0 auto;background:var(--paper);padding:16px 18px 14px;border:1px solid rgba(201,161,95,.22);position:relative;box-shadow:0 26px 76px rgba(18,24,33,.09)}
+.sheet{width:1920px;min-height:1080px;margin:0 16px;background:var(--paper);padding:16px 18px 14px;border:1px solid rgba(201,161,95,.22);position:relative;box-shadow:0 26px 76px rgba(18,24,33,.09)}
 .top{display:grid;grid-template-columns:230px 1fr 430px;gap:14px;align-items:start;margin-bottom:10px}
 .logo{font-family:var(--display);font-weight:500;font-size:86px;line-height:.8;color:var(--gold-dim);letter-spacing:-4px}
 .title h1{font-family:var(--display);font-weight:500;font-size:38px;line-height:1.08;margin:0;color:var(--ink)}
@@ -40,7 +40,7 @@ body{padding-top:74px;overflow-x:hidden;color:var(--ink);font-family:var(--body)
 .phase h3{margin:0 0 3px;font-family:var(--display);font-weight:500;font-size:19px;line-height:1.15;color:var(--ink)}
 .phase p{margin:0;font-family:var(--body);font-size:13px;line-height:1.42;color:var(--ink-soft)}
 .p1,.p2,.p3,.p4,.p5{color:var(--gold-dim)}
-.matrix{border-collapse:collapse;width:100%;table-layout:fixed;background:#fff;border:1px solid var(--line-soft);font-family:var(--body);font-size:11.6px}
+.matrix{border-collapse:separate;border-spacing:0;width:100%;table-layout:fixed;background:#fff;border:1px solid var(--line-soft);border-radius:14px;overflow:hidden;font-family:var(--body);font-size:11.6px}
 .matrix th{background:linear-gradient(180deg,#242a33,#151a20);color:#fff;border:1px solid rgba(255,255,255,.12);padding:8px 6px;line-height:1.25;text-align:center;font-family:var(--utility);font-size:10px;letter-spacing:.03em;font-weight:500}
 .matrix td{border:1px solid rgba(18,24,33,.09);padding:7px 7px;vertical-align:top;line-height:1.36}
 .matrix .phaseCell{font-family:var(--display);font-weight:500;text-align:center;vertical-align:middle;font-size:15px;line-height:1.22;color:var(--ink)!important;border-left:4px solid var(--phase-accent);border-right:1px solid rgba(18,24,33,.08);padding:10px 10px;background:linear-gradient(180deg,var(--phase-wash),rgba(255,255,255,.72));letter-spacing:0;overflow-wrap:anywhere;word-break:normal;hyphens:auto}
@@ -62,7 +62,7 @@ body{padding-top:74px;overflow-x:hidden;color:var(--ink);font-family:var(--body)
 .flow{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:12px;text-align:center;color:var(--ink-soft);font-weight:500;flex-wrap:wrap}.flow span{display:block;min-width:70px}.arrow{color:var(--gold-dim);font-size:16px}.note{font-size:12.5px;line-height:1.46;color:var(--ink-soft)}
 .badge{display:inline-block;border-radius:999px;background:#faf7f0;border:1px solid rgba(201,161,95,.26);padding:2px 7px;margin:1px 2px;font-family:var(--utility);font-size:9.5px;font-weight:500;color:#6f6049}
 .footer{margin-top:8px;text-align:center;font-family:var(--utility);font-size:10.5px;color:var(--ink-quiet);font-weight:500;letter-spacing:.03em}
-@media(max-width:900px){.matrix .phaseCell{font-size:14px;padding:8px 7px}body{padding-top:62px}.matrix-page-bar{height:62px;padding:10px 12px}.matrix-brand span{display:none}.matrix-home,.matrix-guide{display:none}.matrix-viewport{padding-top:10px}.sheet{margin-left:8px}.langbar button{padding:7px 14px}}
+@media(max-width:900px){.matrix .phaseCell{font-size:14px;padding:8px 7px}body{padding-top:62px}.matrix-page-bar{height:62px;padding:10px 12px}.matrix-brand span{display:none}.matrix-home,.matrix-guide{display:none}.matrix-viewport{padding-top:10px}.sheet{margin:0 8px}.langbar button{padding:7px 14px}}
 @media print{body{background:#fff}.sheet{width:100%;min-height:auto;border:0;margin:0;box-shadow:none}.matrix-page-bar,.matrix-note{display:none}}
 </style>
 </head>
